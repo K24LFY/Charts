@@ -139,7 +139,9 @@ open class YAxisRenderer: AxisRendererBase
             else { return }
         
         let labelFont = yAxis.labelFont
-        let labelTextColor = yAxis.labelTextColor
+        // my edit begin - delete
+        //let labelTextColor = yAxis.labelTextColor
+        // my edit end
         
         let from = yAxis.isDrawBottomYLabelEntryEnabled ? 0 : 1
         let to = yAxis.isDrawTopYLabelEntryEnabled ? yAxis.entryCount : (yAxis.entryCount - 1)
@@ -148,12 +150,31 @@ open class YAxisRenderer: AxisRendererBase
         {
             let text = yAxis.getFormattedLabel(i)
             
-            ChartUtils.drawText(
-                context: context,
-                text: text,
-                point: CGPoint(x: fixedPosition, y: positions[i].y + offset),
-                align: textAlign,
-                attributes: [NSFontAttributeName: labelFont, NSForegroundColorAttributeName: labelTextColor])
+            // my edit begin
+            var verticalAligment : YAxis.LabelVerticalAligmentToGridLine
+            if (i < yAxis.labelVerticalAligmentsToGridLine.count) {
+                
+                verticalAligment = YAxis.LabelVerticalAligmentToGridLine(rawValue: yAxis.labelVerticalAligmentsToGridLine[i].intValue)!
+            }else{
+                
+                verticalAligment = .center
+            }
+            let labelTextColor : NSUIColor
+            if (i < yAxis.labelTextColors.count) {
+                
+                labelTextColor = yAxis.labelTextColors[i];
+            }else{
+                
+                labelTextColor = yAxis.labelTextColor;
+            }
+            
+            ChartUtils.drawText(context: context,
+                                text: text,
+                                point: CGPoint(x: fixedPosition, y: positions[i].y + offset),
+                                align: textAlign,
+                                verticalAlignment: verticalAligment,
+                                attributes: [NSFontAttributeName: labelFont, NSForegroundColorAttributeName: labelTextColor])
+            // my edit end
         }
     }
     

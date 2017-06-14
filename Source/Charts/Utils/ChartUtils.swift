@@ -143,6 +143,36 @@ open class ChartUtils
         NSUIGraphicsPopContext()
     }
     
+    //my edit begin - add
+    open class func drawText(context: CGContext, text: String, point: CGPoint, align: NSTextAlignment, verticalAlignment: YAxis.LabelVerticalAligmentToGridLine, attributes: [String : AnyObject]?)
+    {
+        var point = point
+        
+        if align == .center
+        {
+            point.x -= text.size(attributes: attributes).width / 2.0
+        }
+        else if align == .right
+        {
+            point.x -= text.size(attributes: attributes).width
+        }
+        
+        if verticalAlignment == .top {
+            
+            point.y -= text.size(attributes: attributes).height / 2.0
+        }else if verticalAlignment == .bottom {
+            
+            point.y += text.size(attributes: attributes).height / 2.0
+        }
+        
+        NSUIGraphicsPushContext(context)
+        
+        (text as NSString).draw(at: point, withAttributes: attributes)
+        
+        NSUIGraphicsPopContext()
+    }
+    //my edit end
+    
     open class func drawText(context: CGContext, text: String, point: CGPoint, attributes: [String : AnyObject]?, anchor: CGPoint, angleRadians: CGFloat)
     {
         var drawOffset = CGPoint()

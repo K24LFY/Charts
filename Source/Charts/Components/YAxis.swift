@@ -30,6 +30,16 @@ open class YAxis: AxisBase
         case insideChart
     }
     
+    //my edit begin
+    @objc(YAxisLabelVerticalAligmentToGridLine)
+    public enum LabelVerticalAligmentToGridLine: Int
+    {
+        case center
+        case top
+        case bottom
+    }
+    //my edit end
+    
     ///  Enum that specifies the axis a DataSet should be plotted against, either Left or Right.
     @objc
     public enum AxisDependency: Int
@@ -37,6 +47,13 @@ open class YAxis: AxisBase
         case left
         case right
     }
+    
+    //my edit begin
+    open var labelVerticalAligmentsToGridLine = [NSNumber]()
+    
+    open var labelTextColors = [NSUIColor]()
+    
+    //my edit end
     
     /// indicates if the bottom y-label entry is drawn or not
     open var drawBottomYLabelEntryEnabled = true
