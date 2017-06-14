@@ -57,6 +57,21 @@ open class ChartDataEntry: ChartDataEntryBase
         self.x = x
     }
     
+    // my edit begin
+    /// An Entry represents one single entry in the chart.
+    /// - parameter x: the x value
+    /// - parameter y: the y value (the actual value of the entry)
+    /// - parameter icon: icon image
+    /// - parameter iconPosition: icon position aligment to the entry point center
+    
+    public init(x: Double, y: Double, icon: NSUIImage?, iconPosition:IconPosition)
+    {
+        super.init(y: y, icon: icon, iconPosition : iconPosition)
+        
+        self.x = x
+    }
+    // my edit end
+    
     /// An Entry represents one single entry in the chart.
     /// - parameter x: the x value
     /// - parameter y: the y value (the actual value of the entry)

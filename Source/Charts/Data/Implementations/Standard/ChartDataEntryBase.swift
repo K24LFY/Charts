@@ -22,6 +22,20 @@ open class ChartDataEntryBase: NSObject
     /// optional icon image
     open var icon: NSUIImage?
     
+    // my edit begin
+    @objc(ChartDataEntryIconPosition)
+    public enum IconPosition : Int
+    {
+        case center
+        case top
+        case bottom
+    }
+    
+    /// icon position aligment to the entry point center
+    open var iconPosition : IconPosition = IconPosition.center
+    
+    // my edit end
+    
     public override required init()
     {
         super.init()
@@ -57,6 +71,20 @@ open class ChartDataEntryBase: NSObject
         self.y = y
         self.icon = icon
     }
+    
+    // mark - my edit begin
+    /// - parameter y: the y value (the actual value of the entry)
+    /// - parameter icon: icon image
+    /// - parameter iconPosition : icon position to the line
+    public init(y: Double, icon: NSUIImage?, iconPosition:IconPosition) {
+        
+        super.init()
+        
+        self.y = y
+        self.icon = icon
+        self.iconPosition = iconPosition
+    }
+    // mark - my edit end
     
     /// - parameter y: the y value (the actual value of the entry)
     /// - parameter icon: icon image

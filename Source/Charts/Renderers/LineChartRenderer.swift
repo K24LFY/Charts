@@ -585,11 +585,24 @@ open class LineChartRenderer: LineRadarRenderer
                     
                     if let icon = e.icon, dataSet.isDrawIconsEnabled
                     {
+                        // my edit begin
+                        var y = pt.y + iconsOffset.y
+                        switch e.iconPosition {
+                        case .center:
+                            break
+                        case .bottom:
+                            y -= icon.size.height
+                            break
+                        case .top:
+                            y += icon.size.height
+                            break
+                        }
                         ChartUtils.drawImage(context: context,
                                              image: icon,
                                              x: pt.x + iconsOffset.x,
-                                             y: pt.y + iconsOffset.y,
+                                             y: y,
                                              size: icon.size)
+                        // my edit end
                     }
                 }
             }
