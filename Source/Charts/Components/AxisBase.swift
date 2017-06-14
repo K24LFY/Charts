@@ -70,6 +70,10 @@ open class AxisBase: ComponentBase
     /// the flag can be used to turn off the antialias for grid lines
     open var gridAntialiasEnabled = true
     
+    // my edit begin
+    open var customEntries = false
+    // my edit end
+    
     /// the actual array of entries
     open var entries = [Double]()
     

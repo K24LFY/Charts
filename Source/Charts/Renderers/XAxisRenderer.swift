@@ -54,6 +54,11 @@ open class XAxisRenderer: AxisRendererBase
             }
         }
         
+        // my edit begin
+        guard let axis = self.axis else { return }
+        if axis.customEntries { return }
+        // my edit end
+        
         computeAxisValues(min: min, max: max)
     }
     
